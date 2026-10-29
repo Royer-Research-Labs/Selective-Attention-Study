@@ -1,0 +1,14 @@
+# prepared corpora (build with `selective-attention-prepare-data`; see README) and training outputs
+data/
+runs/**/latest*.pt
+runs/**/*.pt
+results/generated/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+# reproductions (scripts/run_16k.sh, README) stay apart from the published records
+runs_repro/
+results_repro/

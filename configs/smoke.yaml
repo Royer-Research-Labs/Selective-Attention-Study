@@ -1,0 +1,27 @@
+# CPU smoke test: a tiny dilution + softmax model on synthetic data, seconds to run.
+#   python -m dilution.train --config configs/smoke.yaml --overwrite-run
+model:
+  vocab_size: 128
+  n_layers: 2
+  d_model: 32
+  n_heads: 2
+  context_length: 16
+  attention: dilution
+  layer_attention: [dilution, softmax]
+  mlp: swiglu
+data:
+  synthetic: true
+  vocab_size: 128
+  train_tokens: 4096
+  val_tokens: 1024
+training:
+  output_dir: runs/smoke
+  device: cpu
+  dtype: float32
+  batch_size: 4
+  sequence_length: 16
+  max_steps: 3
+  warmup_steps: 1
+  eval_interval: 3
+  eval_batches: 2
+  log_interval: 1

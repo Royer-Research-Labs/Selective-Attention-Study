@@ -1,0 +1,83 @@
+model:
+  vocab_size: 50304
+  n_layers: 24
+  d_model: 768
+  n_heads: 12
+  context_length: 16384
+  dropout: 0.0
+  bias: false
+  attention: selective
+  layer_attention: null
+  mlp: swiglu
+  ffn_hidden: null
+  positional: none
+  rope_theta: 500000
+  bid: softmax
+  share_cumsum: true
+data:
+  train_path: data/fineweb_edu_100bt_40b/train.bin
+  val_path: data/fineweb_edu_100bt_40b/val.bin
+  synthetic: false
+  vocab_size: 50304
+  train_tokens: 40000000000
+  val_tokens: 20000000
+  seed: 1337
+  pattern_length: 256
+training:
+  output_dir: runs/scale_16384/all_selective_nope_seed7331
+  device: auto
+  dtype: auto
+  compile: true
+  batch_size: 2
+  sequence_length: 16384
+  gradient_accumulation_steps: 2
+  max_steps: 128174
+  learning_rate: 6e-4
+  min_lr_ratio: 0.1
+  warmup_steps: 1000
+  weight_decay: 0.1
+  beta1: 0.9
+  beta2: 0.95
+  eps: 1.0e-08
+  grad_clip: 1.0
+  fused_optimizer: true
+  use_dilution_kernel: true
+  eval_interval: 1000
+  eval_batches: 8
+  checkpoint_interval: 1000
+  log_interval: 25
+  seed: 7331
+  resume: null
+data_provenance:
+  kind: prepared_uint16
+  splits:
+    train:
+      kind: prepared_uint16
+      split: train
+      manifest_split: train
+      token_path: data/fineweb_edu_100bt_40b/train.bin
+      num_tokens: 40000000000
+      num_bytes: 80000000000
+      sha256: 9d559e313f9f058c402a3e290cb96d462ffefe2b39c173b72ac4bcfe28f99950
+      manifest_path: data/fineweb_edu_100bt_40b/manifest.json
+      manifest_sha256: 8ba2e211a7ea8fff9c93511b34dae334cc073b400401c7b94a024f0b05088bf9
+      manifest_copy: runs/scale_16384/all_selective_nope_seed7331/data_manifest.json
+      manifest_copy_sha256: 8ba2e211a7ea8fff9c93511b34dae334cc073b400401c7b94a024f0b05088bf9
+    val:
+      kind: prepared_uint16
+      split: val
+      manifest_split: validation
+      token_path: data/fineweb_edu_100bt_40b/val.bin
+      num_tokens: 20000000
+      num_bytes: 40000000
+      sha256: 4c1608261b6883992c5f9db5f5c73c95af6d5982a368e672215d19e855fae074
+      manifest_path: data/fineweb_edu_100bt_40b/manifest.json
+      manifest_sha256: 8ba2e211a7ea8fff9c93511b34dae334cc073b400401c7b94a024f0b05088bf9
+      manifest_copy: runs/scale_16384/all_selective_nope_seed7331/data_manifest.json
+      manifest_copy_sha256: 8ba2e211a7ea8fff9c93511b34dae334cc073b400401c7b94a024f0b05088bf9
+runtime:
+  device: cuda
+  dtype: bfloat16
+  compile: true
+  fused_optimizer: true
+  parameter_count: 208540416

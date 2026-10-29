@@ -1,0 +1,44 @@
+# 209M x 16K Selective Attention, no position signal, every window starting with a BOS token (all_selective_nope_bos).
+# Identical to all_selective_nope.yaml except data.bos_token (GPT-2 <|endoftext|>, 50256) and the output directory.
+# Tests the first-tokens blind spot (2026-10-18/19): the paper exempts <BOS> from selection, but windows of the
+# token stream start mid-document with no BOS, and 2 of 3 16K seeds miss needles in the first few tokens.
+model:
+  vocab_size: 50304
+  n_layers: 24
+  d_model: 768
+  n_heads: 12
+  context_length: 16384
+  positional: none
+  rope_theta: 500000
+  bias: false
+  mlp: swiglu
+  attention: selective
+data:
+  synthetic: false
+  vocab_size: 50304
+  train_path: data/fineweb_edu_100bt_40b/train.bin
+  val_path: data/fineweb_edu_100bt_40b/val.bin
+  train_tokens: 40000000000
+  val_tokens: 20000000
+  seed: 1337
+  bos_token: 50256
+training:
+  device: auto
+  dtype: auto
+  compile: true
+  batch_size: 2
+  sequence_length: 16384
+  gradient_accumulation_steps: 2
+  max_steps: 128174
+  learning_rate: 6e-4
+  min_lr_ratio: 0.1
+  warmup_steps: 1000
+  weight_decay: 0.1
+  grad_clip: 1.0
+  fused_optimizer: true
+  log_interval: 25
+  eval_interval: 1000
+  eval_batches: 8
+  checkpoint_interval: 1000
+  seed: 1337
+  output_dir: runs/scale_16384/all_selective_nope_bos

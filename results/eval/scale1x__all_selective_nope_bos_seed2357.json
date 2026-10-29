@@ -1,0 +1,10 @@
+{
+  "loss": 3.052032582461834,
+  "perplexity": 21.15830674873364,
+  "accuracy": 0.41980695724487305,
+  "tokens": 2097152,
+  "batches": 64,
+  "run": "runs/scale_16384/all_selective_nope_bos_seed2357",
+  "batch_size": 2,
+  "sequence_length": 16384
+}

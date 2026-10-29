@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "selective-attention-study"
+version = "0.1.0"
+description = "A study of Selective Attention (Leviathan et al., ICLR 2025) trained like Dilution-Attention at 16K context, with the fused Triton kernels that made it possible. Research code, not maintained."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+authors = [
+  { name = "Nick Royer" },
+]
+dependencies = [
+    "torch>=2.4",
+    "PyYAML",
+]
+
+[project.urls]
+Homepage = "https://github.com/Royer-Research-Labs/Selective-Attention-Study"
+Repository = "https://github.com/Royer-Research-Labs/Selective-Attention-Study"
+
+[project.optional-dependencies]
+dev = ["pytest"]
+data = ["datasets", "tiktoken"]
+plots = ["matplotlib", "numpy"]  # scripts/make_figures.py
+niah = ["tiktoken"]  # plus a checkout of https://github.com/Royer-Research-Labs/Niah (see README)
+
+[project.scripts]
+selective-attention-train = "selective_attention.train:main"
+selective-attention-niah = "selective_attention.niah_eval:main"
+selective-attention-prepare-data = "selective_attention.prepare_data:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -1,0 +1,120 @@
+{
+ "task": "niah_prefix_test",
+ "argv": [
+  "--device",
+  "cuda",
+  "--length",
+  "256",
+  "--model",
+  "s1337=runs/scale_16384/all_selective_nope_seed1337/checkpoint_step_0064000.pt",
+  "--model",
+  "s2357=runs/scale_16384/all_selective_nope_seed2357/checkpoint_step_0064000.pt",
+  "--model",
+  "s7331=runs/scale_16384/all_selective_nope_seed7331/checkpoint_step_0064000.pt",
+  "--output",
+  "results/investigate/niah_prefix_test.json"
+ ],
+ "length": 256,
+ "num_needles": 8,
+ "placements_per_needle": 20,
+ "seed": 42,
+ "prefixes": {
+  "none": "",
+  "newline": "\n",
+  "space+newline": " \n",
+  "one filler sentence": null,
+  "eot": "<|endoftext|>"
+ },
+ "models": {
+  "s1337": {
+   "checkpoint": "runs/scale_16384/all_selective_nope_seed1337/checkpoint_step_0064000.pt",
+   "results": {
+    "none": {
+     "accuracy": 1.0,
+     "depth0_pass": 7,
+     "depth0_total": 7
+    },
+    "newline": {
+     "accuracy": 1.0,
+     "depth0_pass": 7,
+     "depth0_total": 7
+    },
+    "space+newline": {
+     "accuracy": 1.0,
+     "depth0_pass": 7,
+     "depth0_total": 7
+    },
+    "one filler sentence": {
+     "accuracy": 1.0,
+     "depth0_pass": 7,
+     "depth0_total": 7
+    },
+    "eot": {
+     "accuracy": 1.0,
+     "depth0_pass": 7,
+     "depth0_total": 7
+    }
+   }
+  },
+  "s2357": {
+   "checkpoint": "runs/scale_16384/all_selective_nope_seed2357/checkpoint_step_0064000.pt",
+   "results": {
+    "none": {
+     "accuracy": 0.9642857142857143,
+     "depth0_pass": 2,
+     "depth0_total": 7
+    },
+    "newline": {
+     "accuracy": 0.9928571428571429,
+     "depth0_pass": 6,
+     "depth0_total": 7
+    },
+    "space+newline": {
+     "accuracy": 1.0,
+     "depth0_pass": 7,
+     "depth0_total": 7
+    },
+    "one filler sentence": {
+     "accuracy": 1.0,
+     "depth0_pass": 7,
+     "depth0_total": 7
+    },
+    "eot": {
+     "accuracy": 0.9571428571428572,
+     "depth0_pass": 1,
+     "depth0_total": 7
+    }
+   }
+  },
+  "s7331": {
+   "checkpoint": "runs/scale_16384/all_selective_nope_seed7331/checkpoint_step_0064000.pt",
+   "results": {
+    "none": {
+     "accuracy": 0.9571428571428572,
+     "depth0_pass": 1,
+     "depth0_total": 7
+    },
+    "newline": {
+     "accuracy": 0.9571428571428572,
+     "depth0_pass": 1,
+     "depth0_total": 7
+    },
+    "space+newline": {
+     "accuracy": 0.9571428571428572,
+     "depth0_pass": 1,
+     "depth0_total": 7
+    },
+    "one filler sentence": {
+     "accuracy": 1.0,
+     "depth0_pass": 7,
+     "depth0_total": 7
+    },
+    "eot": {
+     "accuracy": 0.9571428571428572,
+     "depth0_pass": 1,
+     "depth0_total": 7
+    }
+   }
+  }
+ }
+}

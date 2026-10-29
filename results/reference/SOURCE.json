@@ -1,0 +1,179 @@
+{
+ "source": "https://github.com/Royer-Research-Labs/Dilution-Attention",
+ "commit": "4d09a186cbc2513536605a9bcbbd261cba745d9b",
+ "note": "Copied unchanged from that repository's results/ directory: the published Dilution-Attention runs the table and figures compare against.",
+ "files": [
+  {
+   "file": "eval/scale1x__all_dilution_nope_seed1337.json",
+   "sha256": "8b504ebf7824c2595353fa3d32e616d7050d522b72e4d9235b5476e1a07eb1c4"
+  },
+  {
+   "file": "eval/scale1x__all_dilution_nope_seed2357.json",
+   "sha256": "2f8cef0c1484f1e1cafe285e8ee0cdfd05f803083072ecfd8911e1e6e11e45f4"
+  },
+  {
+   "file": "eval/scale1x__all_softmax_nope_lr6e-4_seed1337.json",
+   "sha256": "ea3561a7efb8d2d2d0b9ee09b41a348e08950cd3b43fd676b320f0635de03f18"
+  },
+  {
+   "file": "eval/scale1x__all_softmax_nope_lr6e-4_seed2357.json",
+   "sha256": "0d2f8ab8ba922f5b47c00f1051add782acad3ae1811233b89d0c4df1e6c990ee"
+  },
+  {
+   "file": "eval/scale1x__all_softmax_rope_seed1337.json",
+   "sha256": "df89d67cfe07616e39a5a2ac984d0930e8ebec6aaf4fd7347a896e72f3b22ded"
+  },
+  {
+   "file": "eval/scale1x__all_softmax_rope_seed2357.json",
+   "sha256": "845ed48b9717c18fd63e92c17085f381c524840201dd38bd89772f9ed949adb1"
+  },
+  {
+   "file": "eval/scale1x__alt6_softmax_rope_dilution_seed1337.json",
+   "sha256": "cd972b48ddf27fcd0ae0c13911ef6c8304537072a745371e39b22ac4bc2cdbde"
+  },
+  {
+   "file": "eval/scale1x__alt6_softmax_rope_dilution_seed2357.json",
+   "sha256": "7a9873a78ea4bad7a620e354f77a72fe7c8b4297b7b6cbcbf885cb6f91fe7c39"
+  },
+  {
+   "file": "longppl/pg19_209m_16k_1x.json",
+   "sha256": "19cd1fa3853e3a5cebd38bd031c85caba24fda4e3a979e3600efd0ed2753415d"
+  },
+  {
+   "file": "longppl/pg19_209m_16k_2x.json",
+   "sha256": "4653dd1ab4004dffeb87216835e9ecf31e4bba591b127600a6cda998a3a5f1a2"
+  },
+  {
+   "file": "niah/extrap128k__scale2x__all_dilution_nope_seed1337.json",
+   "sha256": "5af6f1e3c6e3bfc1283de7fd5b60f33ca9f0c7d7f0216ad9b7bbf44a43da03b6"
+  },
+  {
+   "file": "niah/extrap128k__scale2x__all_dilution_nope_seed2357.json",
+   "sha256": "1876ace5aa3332c95d0efae9affee615acbe48336f92f20e72f337cde0aa7bc7"
+  },
+  {
+   "file": "niah/extrap128k__scale_16384_all_dilution_nope_seed1337.json",
+   "sha256": "8edaca0031795e85581e9933e3ae94bbd2bd6dd8ba1430b7be7df6429deda72c"
+  },
+  {
+   "file": "niah/extrap128k__scale_16384_all_softmax_nope_lr6e-4_seed1337.json",
+   "sha256": "99d02980e18218c31fc80068f203f3cc32abd0482e6cd1e17bceb7134493bca8"
+  },
+  {
+   "file": "niah/extrap128k__scale_16384_all_softmax_nope_lr6e-4_seed2357.json",
+   "sha256": "64659063da5d4c3dea494c8ce5db879ee63ed114d1d9d5369b1b7564c89c87f7"
+  },
+  {
+   "file": "niah/extrap256k__scale2x__all_dilution_nope_seed1337.json",
+   "sha256": "f8616c340f8daa340cef8491c315eb31021c41c84e2a53c7cbf63d7fa913d3b3"
+  },
+  {
+   "file": "niah/extrap256k__scale2x__all_dilution_nope_seed2357.json",
+   "sha256": "3c6a3551cabdfe3a13e9da09028fd19dd7e22f5787f219ec53710c258b08904c"
+  },
+  {
+   "file": "niah/extrap256k__scale_16384_all_dilution_nope_seed1337.json",
+   "sha256": "2a32accf8b4f5b93d765638e6581d98c7c9160ca367977c871e56739a0f8421f"
+  },
+  {
+   "file": "niah/extrap256k__scale_16384_all_softmax_nope_lr6e-4_seed1337.json",
+   "sha256": "e803fd6760ecfa66c4f9df11c06f44ec521787c960bbdebfe9dcc26886a0fa56"
+  },
+  {
+   "file": "niah/extrap256k__scale_16384_all_softmax_nope_lr6e-4_seed2357.json",
+   "sha256": "18ab09af55815f49491f53e92356ba85612c2714d971fb1d7967579be9613e42"
+  },
+  {
+   "file": "niah/extrap64k__scale2x__all_dilution_nope_seed1337.json",
+   "sha256": "954741fb1e5c0fd0e47ae715b88e44cddeb2d652b06aaa19514cdcf0a17ad43d"
+  },
+  {
+   "file": "niah/extrap64k__scale2x__all_dilution_nope_seed2357.json",
+   "sha256": "276c8560ede7f13ec50cfe16abe87157d75ec984e0ec93da27a73ff15a7b5fdf"
+  },
+  {
+   "file": "niah/extrap64k__scale_16384_all_dilution_nope_seed1337.json",
+   "sha256": "ffe9abf165a9696a9d826da8af604b061e576121d279e4a1f902df39efc917c7"
+  },
+  {
+   "file": "niah/extrap64k__scale_16384_all_softmax_nope_lr6e-4_seed1337.json",
+   "sha256": "fb532423ec36b31ecd64494ab7baf0aa122d2bedab75fdd759977275018635e9"
+  },
+  {
+   "file": "niah/extrap64k__scale_16384_all_softmax_nope_lr6e-4_seed2357.json",
+   "sha256": "7e0d155dc237fa7cfba52054b010236bb516a2b6e05ad1e7a4d35d531c4ea572"
+  },
+  {
+   "file": "niah/scale1x__all_dilution_nope_seed1337.json",
+   "sha256": "fc635239f1b8092c236897dfcaf0c3e190644f4cb3fbe96565b5a51163483a20"
+  },
+  {
+   "file": "niah/scale1x__all_softmax_nope_lr6e-4_seed1337.json",
+   "sha256": "d0f2c87aeab25a987df95454ab8b8dcecbc5ab7c9d4d4f60b3202952b137e8c5"
+  },
+  {
+   "file": "niah/scale1x__all_softmax_nope_lr6e-4_seed2357.json",
+   "sha256": "316e786bdb6cd795eedb83aa7b7841da5c5955de8be069457679858b5fcf3f2b"
+  },
+  {
+   "file": "niah_v4/extrap128k__scale2x__all_dilution_nope_seed1337.json",
+   "sha256": "183d564a9581a84df7b2e46de184f4f8ef29ee3a90684691940a5c06b8b2363d"
+  },
+  {
+   "file": "niah_v4/extrap128k__scale_16384_all_dilution_nope_seed2357.json",
+   "sha256": "07898e6e9357faa87d84c9c4ff65eadd2fa5c5253d57f8df60521acca9ed87c9"
+  },
+  {
+   "file": "niah_v4/extrap256k__scale2x__all_dilution_nope_seed1337.json",
+   "sha256": "8dbbc06523f0a49a306da954154f35a59c0667cc6ca0e410d2399d8a84208ef2"
+  },
+  {
+   "file": "niah_v4/extrap256k__scale_16384_all_dilution_nope_seed2357.json",
+   "sha256": "fc4ed033f67a64e17e124765df777ebd32952bc66f3d3895f843fed5b9d5927b"
+  },
+  {
+   "file": "niah_v4/extrap64k__scale2x__all_dilution_nope_seed1337.json",
+   "sha256": "d8c1874b747ccae22eed9ad6e1ddbce6641b1d7d8dd88530e0a4e6653106d01c"
+  },
+  {
+   "file": "niah_v4/extrap64k__scale_16384_all_dilution_nope_seed2357.json",
+   "sha256": "7e6d2c89155510dacfae295e408ad509b045a36f5e38ce1854b0e88bf381c142"
+  },
+  {
+   "file": "niah_v4/extrap64k__scale_16384_all_softmax_rope_seed1337.json",
+   "sha256": "bd674dd16e4c86a17f2762989e512fc3190529b96ca2ffcadb0dba3f8a637037"
+  },
+  {
+   "file": "niah_v4/extrap64k__scale_16384_all_softmax_rope_seed2357.json",
+   "sha256": "33702ec22a1a9d0fd2ff690f4589dd6660bb61b0d8e0b5ae2801c5306e279706"
+  },
+  {
+   "file": "niah_v4/extrap64k__scale_16384_alt6_softmax_rope_dilution_seed1337.json",
+   "sha256": "1e99b1139a17ad5db27b1393d28e97d6955a63a9fb97e923f9f2122c427ff962"
+  },
+  {
+   "file": "niah_v4/extrap64k__scale_16384_alt6_softmax_rope_dilution_seed2357.json",
+   "sha256": "67a1f41acfe85a915f8628b7d056f4622f0f27a3172bb5b0df4c3c2df2cb60b1"
+  },
+  {
+   "file": "niah_v4/scale1x__all_dilution_nope_seed2357.json",
+   "sha256": "74955d6c2d9d9268084863a2fea10b1507027cbb250edeff5cd2378209d8f8aa"
+  },
+  {
+   "file": "niah_v4/scale1x__all_softmax_rope_seed1337.json",
+   "sha256": "253b42ef36816a69e3f611cab66b0863214574536097f0b08d9d941f37c0b736"
+  },
+  {
+   "file": "niah_v4/scale1x__all_softmax_rope_seed2357.json",
+   "sha256": "9ea7373704e254a165c19b6c9607ad9b1ee21256011f7a537f2a17dc0524ba78"
+  },
+  {
+   "file": "niah_v4/scale1x__alt6_softmax_rope_dilution_seed1337.json",
+   "sha256": "19675bf8abfcfe23f5750da4f8b815aa7d43236bbf1d5650334998cbdce24484"
+  },
+  {
+   "file": "niah_v4/scale1x__alt6_softmax_rope_dilution_seed2357.json",
+   "sha256": "22828d6ae408411406c3bb35199935472346d29e21e2409e8a77267b3d5bd178"
+  }
+ ]
+}

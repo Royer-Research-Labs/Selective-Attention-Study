@@ -1,0 +1,232 @@
+{
+ "source": "https://github.com/Royer-Research-Labs/Dilution-Attention",
+ "commit": "144cb2d1ca4b8eef54f4de3b64d9ae3e8a8ddf68",
+ "note": "Each file is the source file with `edits` (old, new) applied; an empty list means byte-identical. Edits are import renames, plus the opt-in data.bos_token option (2026-10-19; inactive unless a config sets it); and 64-bit scratch offsets in dilution_kernels.py's forward-only path (2026-10-26; the source overflows int32 past ~262K tokens); and (2026-10-27) data.bos_token applied to synthetic streams in runtime.py, and Selective Attention layers handled in attention_structure.py (also used by needle_attention.py).",
+ "files": [
+  {
+   "file": "src/selective_attention/config.py",
+   "source": "src/dilution/config.py",
+   "source_sha256": "b2ecb4cb56ec53e73206a8a9e70cfefa67114a4bc38629926f2efea1eff2a4f8",
+   "sha256": "b2ecb4cb56ec53e73206a8a9e70cfefa67114a4bc38629926f2efea1eff2a4f8",
+   "edits": []
+  },
+  {
+   "file": "src/selective_attention/data.py",
+   "source": "src/dilution/data.py",
+   "source_sha256": "80c39f314d629b5c84f99f3ca2bd369b1b59c14d3a73485617a9fe7a4ce66da6",
+   "sha256": "d004d12697cd69e4d5585dff9dbf63975923419cb75c2a3ad680e5924669f057",
+   "edits": [
+    [
+     "        windows = self._read_windows(starts, sequence_length + 1)\n        input_ids = windows[:, :-1].contiguous()\n        targets = windows[:, 1:].contiguous()",
+     "        bos = getattr(self, \"bos_token\", None)\n        if bos is None:\n            windows = self._read_windows(starts, sequence_length + 1)\n            input_ids = windows[:, :-1].contiguous()\n            targets = windows[:, 1:].contiguous()\n        else:  # opt-in (data.bos_token): input = [bos] + window[:-1], every window token is a target\n            windows = self._read_windows(starts, sequence_length)\n            input_ids = torch.cat([torch.full_like(windows[:, :1], bos), windows[:, :-1]], dim=1).contiguous()\n            targets = windows.contiguous()"
+    ]
+   ]
+  },
+  {
+   "file": "src/selective_attention/extend.py",
+   "source": "src/dilution/extend.py",
+   "source_sha256": "b01503affef60aa5886e5e52bb86f0a4019e036e125c0dcb48e08bcc8f19a97d",
+   "sha256": "b01503affef60aa5886e5e52bb86f0a4019e036e125c0dcb48e08bcc8f19a97d",
+   "edits": []
+  },
+  {
+   "file": "src/selective_attention/model.py",
+   "source": "src/dilution/model.py",
+   "source_sha256": "43f323c97e798ec0d834750718828e975396a497f2ae12a50c8b105c1dfadaf3",
+   "sha256": "4a9fd0314b311b5bdd25579dcb80b779791305dc8da409831dcaeb8dcdcd7111",
+   "edits": [
+    [
+     "            from . import kernels  # production module",
+     "            from . import dilution_kernels as kernels  # production module"
+    ]
+   ]
+  },
+  {
+   "file": "src/selective_attention/niah_eval.py",
+   "source": "src/dilution/niah_eval.py",
+   "source_sha256": "afad483019f4be499d43e5b2bb70e8c1e813084ded6d1f4b9c9a07126b6e7ded",
+   "sha256": "ca409ebc6dd8875864ab81a238e2a46cb7f3ccc2b0b67d3c84b3fd7eae03d6e4",
+   "edits": [
+    [
+     "                use_shared_choices=True,\n                canonical_tokenizer=tokenizer,\n            )",
+     "                use_shared_choices=True,\n                canonical_tokenizer=tokenizer,\n                prepend_bos=_trained_with_bos(checkpoint_path),\n            )"
+    ],
+    [
+     "def build_parser() -> argparse.ArgumentParser:",
+     "def _trained_with_bos(checkpoint_path) -> bool:\n    \"\"\"Models trained with data.bos_token see that token at position 0; NIAH prompts then get it too.\"\"\"\n    resolved = load_checkpoint(checkpoint_path, map_location=\"cpu\").get(\"resolved_config\") or {}\n    return (resolved.get(\"data\") or {}).get(\"bos_token\") is not None\n\n\ndef build_parser() -> argparse.ArgumentParser:"
+    ]
+   ]
+  },
+  {
+   "file": "src/selective_attention/prepare_data.py",
+   "source": "src/dilution/prepare_data.py",
+   "source_sha256": "037956ad524714afca3c998363a4fbd2e16006ceef737c1e09b74b1dfc1703bb",
+   "sha256": "037956ad524714afca3c998363a4fbd2e16006ceef737c1e09b74b1dfc1703bb",
+   "edits": []
+  },
+  {
+   "file": "src/selective_attention/rope.py",
+   "source": "src/dilution/rope.py",
+   "source_sha256": "80015fbbef58253c6c33772c6de465d0b2175e5ba026c7b2349af51c812d4abe",
+   "sha256": "80015fbbef58253c6c33772c6de465d0b2175e5ba026c7b2349af51c812d4abe",
+   "edits": []
+  },
+  {
+   "file": "src/selective_attention/runtime.py",
+   "source": "src/dilution/runtime.py",
+   "source_sha256": "62b81bf2bbc6d20f1fbc92b8e4f5072718a8246b1ae57901b41886a990b7e7b8",
+   "sha256": "c39a1264e23646755f63280243deaa14ebebe465a23fdb20437838788be9e3fe",
+   "edits": [
+    [
+     "    _reject_unknown_keys(data_values, DEFAULT_DATA_CONFIG, \"data\")",
+     "    _reject_unknown_keys(data_values, set(DEFAULT_DATA_CONFIG) | {\"bos_token\"}, \"data\")  # bos_token: opt-in"
+    ],
+    [
+     "    path = data_config.get(f\"{split}_path\")\n    if not path:\n        raise ConfigurationError(\n            f\"data.{split}_path is required unless data.synthetic is true\"\n        )\n    return TokenStream.from_binary(path, vocab_size=vocab_size)",
+     "    path = data_config.get(f\"{split}_path\")\n    if not path:\n        raise ConfigurationError(\n            f\"data.{split}_path is required unless data.synthetic is true\"\n        )\n    stream = TokenStream.from_binary(path, vocab_size=vocab_size)\n    if data_config.get(\"bos_token\") is not None:  # opt-in: every window starts with this token\n        stream.bos_token = int(data_config[\"bos_token\"])\n    return stream"
+    ],
+    [
+     "def create_token_stream(data_config: Mapping[str, Any], split: str):",
+     "def _with_bos(data_config: Mapping[str, Any], stream):\n    if data_config.get(\"bos_token\") is not None:  # opt-in: every window starts with this token\n        stream.bos_token = int(data_config[\"bos_token\"])\n    return stream\n\n\ndef create_token_stream(data_config: Mapping[str, Any], split: str):"
+    ],
+    [
+     "        return TokenStream.from_synthetic(\n            num_tokens=num_tokens,\n            vocab_size=vocab_size,\n            seed=seed,\n            pattern_length=pattern_length,\n        )\n",
+     "        return _with_bos(data_config, TokenStream.from_synthetic(\n            num_tokens=num_tokens,\n            vocab_size=vocab_size,\n            seed=seed,\n            pattern_length=pattern_length,\n        ))\n"
+    ]
+   ]
+  },
+  {
+   "file": "src/selective_attention/train.py",
+   "source": "src/dilution/train.py",
+   "source_sha256": "6f71233445a30a9fd9e2c8111f9539158551a55e753e3a0ca848806a402c8db2",
+   "sha256": "6f71233445a30a9fd9e2c8111f9539158551a55e753e3a0ca848806a402c8db2",
+   "edits": []
+  },
+  {
+   "file": "src/selective_attention/kernels_bid.py",
+   "source": "src/dilution/kernels_bid.py",
+   "source_sha256": "453005db5505b02a7aceecfc5f3a03f388030194fbca1ce53f66ee9cae68e0cc",
+   "sha256": "453005db5505b02a7aceecfc5f3a03f388030194fbca1ce53f66ee9cae68e0cc",
+   "edits": []
+  },
+  {
+   "file": "src/selective_attention/dilution_kernels.py",
+   "source": "src/dilution/kernels.py",
+   "source_sha256": "605d558c4764149df1d0bdcae9bf6cb86d06644c398dd5106d5a687ffbc4d6a5",
+   "sha256": "0443c2499ff76401ff09a24c059a84f798d6b7fe488c22b4020a1ca2d7a368ea",
+   "edits": [
+    [
+     "            s_base = S + pid_n.to(tl.int64) * stride_sn + pid_m * stride_sb",
+     "            s_base = S + pid_n.to(tl.int64) * stride_sn + pid_m.to(tl.int64) * stride_sb"
+    ],
+    [
+     "        offsets = n.to(tl.int64) * NB * T + blocks[:, None] * T + keys[None, :]",
+     "        offsets = n.to(tl.int64) * NB * T + blocks[:, None].to(tl.int64) * T + keys[None, :]"
+    ],
+    [
+     "        c_base = CARRY + pid_n.to(tl.int64) * stride_sn + pid_m * stride_sb\n\n        acc = tl.zeros",
+     "        c_base = CARRY + pid_n.to(tl.int64) * stride_sn + pid_m.to(tl.int64) * stride_sb\n\n        acc = tl.zeros"
+    ]
+   ]
+  },
+  {
+   "file": "scripts/eval_checkpoint.py",
+   "source": "scripts/eval_checkpoint.py",
+   "source_sha256": "9fe3713c4a78c643cbd41baa13c0057a224efd27c05d92b2d1970559e915e128",
+   "sha256": "59083b2d54102af6a80971994af368280d0dd9c5e02263bf5b0eb7da21d7da57",
+   "edits": [
+    [
+     "from dilution.",
+     "from selective_attention."
+    ]
+   ]
+  },
+  {
+   "file": "scripts/needle_attention.py",
+   "source": "scripts/needle_attention.py",
+   "source_sha256": "7f213bb25c425d3b7786981915fdb9ff6e5b9ab610df99f317911573c4e33d42",
+   "sha256": "27699df0a166228fd89b93e0e7228c5bd880898f0772a18c0955d36ae956ad8d",
+   "edits": [
+    [
+     "from dilution.",
+     "from selective_attention."
+    ]
+   ]
+  },
+  {
+   "file": "scripts/attention_structure.py",
+   "source": "scripts/attention_structure.py",
+   "source_sha256": "c469a27a105d2a9067eeec147a7cd15d10ba4218106a9dd7ae1ab0efc303d4a5",
+   "sha256": "a6a76f5667f3fa661bf67dfe6b6914013cdde3786c5da540dc3b52df920f4497",
+   "edits": [
+    [
+     "from dilution.",
+     "from selective_attention."
+    ],
+    [
+     "    if type(attn_mod).__name__ == \"CausalSelfAttention\":\n        return aff.masked_fill(~causal, float(\"-inf\")).softmax(-1)[0]\n",
+     "    if type(attn_mod).__name__ == \"CausalSelfAttention\":\n        return aff.masked_fill(~causal, float(\"-inf\")).softmax(-1)[0]\n    if type(attn_mod).__name__ == \"SelectiveAttention\":  # softmax(L - F); groups of heads share F\n        from selective_attention.kernels import selective_logits\n        b, h, t, d = q.shape\n        g = attn_mod.groups\n        logits = selective_logits(q.reshape(b * g, h // g, t, d), k.reshape(b * g, h // g, t, d),\n                                  attn_mod.exempt)[0]\n        return logits.reshape(b, h, t, t).softmax(-1)[0]\n"
+    ]
+   ]
+  },
+  {
+   "file": "scripts/report_run.py",
+   "source": "scripts/report_run.py",
+   "source_sha256": "b8a0dffa1204c2076bb5a33c9eb2c701213e5573786bb4df3f2babc30974d14f",
+   "sha256": "b8a0dffa1204c2076bb5a33c9eb2c701213e5573786bb4df3f2babc30974d14f",
+   "edits": []
+  },
+  {
+   "file": "scripts/judge_stability.py",
+   "source": "scripts/judge_stability.py",
+   "source_sha256": "3788864f6d0cc4d2279f12fd6b1b588db71457227080716a5b77d62158787d6c",
+   "sha256": "3788864f6d0cc4d2279f12fd6b1b588db71457227080716a5b77d62158787d6c",
+   "edits": []
+  },
+  {
+   "file": "configs/smoke.yaml",
+   "source": "configs/smoke.yaml",
+   "source_sha256": "e1d02ec9ef4c54291b808854ac737f2669b1ba517aafe9b6badfd810ae135cbb",
+   "sha256": "e1d02ec9ef4c54291b808854ac737f2669b1ba517aafe9b6badfd810ae135cbb",
+   "edits": []
+  },
+  {
+   "file": "tests/conftest.py",
+   "source": "tests/conftest.py",
+   "source_sha256": "de9e67117397d73b98592aa403b2110e07c1ff5ef2bb1aeca178d822d031832f",
+   "sha256": "de9e67117397d73b98592aa403b2110e07c1ff5ef2bb1aeca178d822d031832f",
+   "edits": []
+  },
+  {
+   "file": "LICENSE",
+   "source": "LICENSE",
+   "source_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+   "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+   "edits": []
+  },
+  {
+   "file": "scripts/long_perplexity.py",
+   "source": "scripts/long_perplexity.py",
+   "source_sha256": "2488b8288b0a3abec9b9efeb40e09caf98bd0b1f02afc1167c2c8370c0af816d",
+   "sha256": "60a3c6fcf3b291d302013b718f6d16d59560cdebb83eed42862dbcf2a2e9a4e9",
+   "edits": [
+    [
+     "    from dilution.extend import ExtendedContext\n    from dilution.niah_eval import checkpoint_identity, load_model_for_niah",
+     "    from selective_attention.extend import ExtendedContext\n    from selective_attention.niah_eval import checkpoint_identity, load_model_for_niah"
+    ],
+    [
+     "        model = load_model_for_niah(ckpt, device)\n        trained = model.config.context_length",
+     "        model = load_model_for_niah(ckpt, device)\n        bos = _bos_token(ckpt)   # models trained with data.bos_token read [bos] + book[:L] (L targets, as without it)\n        trained = model.config.context_length"
+    ],
+    [
+     "                    ids = torch.from_numpy(data[b[\"offset\"]:b[\"offset\"] + L + 1].astype(np.int64)).to(device)",
+     "                    ids = torch.from_numpy(data[b[\"offset\"]:b[\"offset\"] + L + 1].astype(np.int64)).to(device)\n                    if bos is not None:\n                        ids = torch.cat([ids.new_full((1,), bos), ids[:-1]])"
+    ],
+    [
+     "def evaluate(a) -> int:",
+     "def _bos_token(ckpt):\n    \"\"\"data.bos_token of the run that produced a checkpoint, or None.\"\"\"\n    from selective_attention.runtime import load_checkpoint\n    resolved = load_checkpoint(ckpt, map_location=\"cpu\").get(\"resolved_config\") or {}\n    return (resolved.get(\"data\") or {}).get(\"bos_token\")\n\n\ndef evaluate(a) -> int:"
+    ]
+   ]
+  }
+ ]
+}

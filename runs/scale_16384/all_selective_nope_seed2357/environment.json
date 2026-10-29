@@ -1,0 +1,15 @@
+{
+  "created_at": "2026-10-23T08:42:16.883491+00:00",
+  "cuda_available": true,
+  "cuda_bf16_supported": true,
+  "cuda_device_index": 0,
+  "cuda_device_name": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+  "cuda_device_total_memory_bytes": 102641500160,
+  "cuda_version": "13.0",
+  "cudnn_version": 92000,
+  "device": "cuda",
+  "dtype": "bfloat16",
+  "platform": "Linux-6.6.114.1-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.12.13",
+  "torch": "2.13.0+cu130"
+}

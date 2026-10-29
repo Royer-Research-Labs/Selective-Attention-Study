@@ -1,0 +1,10 @@
+{
+  "loss": 3.039914932101965,
+  "perplexity": 20.90346494563158,
+  "accuracy": 0.420839786529541,
+  "tokens": 2097152,
+  "batches": 64,
+  "run": "runs/scale_16384/alt6_softmax_rope_dilution_seed2357",
+  "batch_size": 2,
+  "sequence_length": 16384
+}

@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use these results or kernels, please cite this repository and the Selective Attention paper."
+title: "Selective-Attention-Study: Selective Attention trained like Dilution-Attention at 16K context"
+repository-code: "https://github.com/Royer-Research-Labs/Selective-Attention-Study"
+type: software
+license: Apache-2.0
+authors:
+  - given-names: Nick
+    family-names: Royer
+    affiliation: "Royer Research Labs, LLC"
+date-released: 2026-10-27
+references:
+  - type: conference-paper
+    title: "Selective Attention Improves Transformer"
+    authors:
+      - given-names: Yaniv
+        family-names: Leviathan
+      - given-names: Matan
+        family-names: Kalman
+      - given-names: Yossi
+        family-names: Matias
+    conference:
+      name: "International Conference on Learning Representations (ICLR)"
+    year: 2025
+    identifiers:
+      - type: other
+        value: "arXiv:2410.02703"

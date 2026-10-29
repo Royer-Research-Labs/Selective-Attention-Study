@@ -1,0 +1,54 @@
+{
+  "manifest_version": 1,
+  "software": {
+    "datasets": "5.0.0",
+    "tiktoken": "0.13.0"
+  },
+  "source": {
+    "config": "sample-100BT",
+    "dataset": "HuggingFaceFW/fineweb-edu",
+    "revision": "fc9850dff5e2d0f8f776efe41b24a1c49556cfc5",
+    "split": "train",
+    "streaming": true,
+    "text_column": "text"
+  },
+  "split_policy": {
+    "document_disjoint": true,
+    "exact_token_counts": true,
+    "order": [
+      "validation",
+      "train"
+    ],
+    "truncated_document_suffix": "discarded"
+  },
+  "splits": {
+    "train": {
+      "documents_consumed": 38981725,
+      "final_document_truncated": true,
+      "num_bytes": 80000000000,
+      "num_tokens": 40000000000,
+      "path": "train.bin",
+      "sha256": "9d559e313f9f058c402a3e290cb96d462ffefe2b39c173b72ac4bcfe28f99950"
+    },
+    "validation": {
+      "documents_consumed": 18750,
+      "final_document_truncated": true,
+      "num_bytes": 40000000,
+      "num_tokens": 20000000,
+      "path": "val.bin",
+      "sha256": "4c1608261b6883992c5f9db5f5c73c95af6d5982a368e672215d19e855fae074"
+    }
+  },
+  "token_format": {
+    "byte_order": "little",
+    "bytes_per_token": 2,
+    "dtype": "uint16",
+    "header_bytes": 0
+  },
+  "tokenizer": {
+    "encoding": "gpt2",
+    "eos_policy": "append one EOS token after every source document",
+    "eos_token_id": 50256,
+    "library": "tiktoken"
+  }
+}
