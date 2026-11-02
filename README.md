@@ -1,5 +1,7 @@
 # Selective-Attention-Study
 
+[![tests](https://github.com/Royer-Research-Labs/Selective-Attention-Study/actions/workflows/tests.yml/badge.svg)](https://github.com/Royer-Research-Labs/Selective-Attention-Study/actions/workflows/tests.yml)
+
 A study of **Selective Attention** (Leviathan, Kalman and Matias, "Selective Attention Improves
 Transformer", ICLR 2025, [arXiv:2410.02703](https://arxiv.org/abs/2410.02703)) trained the way
 [Dilution-Attention](https://github.com/Royer-Research-Labs/Dilution-Attention) was: 209M parameters,
