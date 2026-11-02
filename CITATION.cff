@@ -4,6 +4,14 @@ title: "Selective-Attention-Study: Selective Attention trained like Dilution-Att
 repository-code: "https://github.com/Royer-Research-Labs/Selective-Attention-Study"
 type: software
 version: 0.1.0
+doi: 10.5281/zenodo.23873850
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.23873850
+    description: Concept DOI (all versions; resolves to the latest)
+  - type: doi
+    value: 10.5281/zenodo.23873851
+    description: Version DOI of v0.1.0
 abstract: >-
   A companion study to Dilution-Attention. Selective Attention (Leviathan, Kalman and Matias, ICLR 2025) is
   trained with no position signal at 209M parameters and 16K context under the same recipe as the
