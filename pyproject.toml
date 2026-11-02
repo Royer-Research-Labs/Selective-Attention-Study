@@ -23,7 +23,7 @@ Homepage = "https://github.com/Royer-Research-Labs/Selective-Attention-Study"
 Repository = "https://github.com/Royer-Research-Labs/Selective-Attention-Study"
 
 [project.optional-dependencies]
-dev = ["pytest"]
+dev = ["pytest", "numpy"]  # numpy: a test writes a toy token file
 data = ["datasets", "tiktoken"]
 plots = ["matplotlib", "numpy"]  # scripts/make_figures.py
 niah = ["tiktoken"]  # plus a checkout of https://github.com/Royer-Research-Labs/Niah (see README)

@@ -3,12 +3,26 @@ message: "If you use these results or kernels, please cite this repository and t
 title: "Selective-Attention-Study: Selective Attention trained like Dilution-Attention at 16K context"
 repository-code: "https://github.com/Royer-Research-Labs/Selective-Attention-Study"
 type: software
+version: 0.1.0
+abstract: >-
+  A companion study to Dilution-Attention. Selective Attention (Leviathan, Kalman and Matias, ICLR 2025) is
+  trained with no position signal at 209M parameters and 16K context under the same recipe as the
+  Dilution-Attention runs, with a fused Triton kernel for training and cached decoding. The repository holds the
+  kernel, the training harness, run records, and evaluations of in-context loss, needle-in-a-haystack retrieval
+  out to 128K, harder retrieval with natural filler and distractors, and long-document use of distant context.
+keywords:
+  - selective attention
+  - attention
+  - length extrapolation
+  - long context
+  - triton
+  - transformer
 license: Apache-2.0
 authors:
   - given-names: Nick
     family-names: Royer
     affiliation: "Royer Research Labs, LLC"
-date-released: 2026-10-27
+date-released: 2026-11-02
 references:
   - type: conference-paper
     title: "Selective Attention Improves Transformer"
